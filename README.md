@@ -1,4 +1,6 @@
 # 2b IMPLEMENTATION OF SLIDING WINDOW PROTOCOL
+## Name:s.rohith kumar
+## Registration number:212224240153
 ## AIM
 ## ALGORITHM:
 1. Start the program.
@@ -8,6 +10,35 @@
 5. If your frames reach the server it will send ACK signal to client
 6. Stop the Program
 ## PROGRAM
+## CLIENT:
+```
+import socket
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+while True:
+   i=input("Enter a data: ")
+   c.send(i.encode())
+   ack=c.recv(1024).decode()
+   if ack:
+     print(ack)
+     continue
+   else:
+     c.close()
+     break
+```
+## server:
+```
+import socket
+s=socket.socket()
+s.connect(('localhost',8000))
+while True:
+    print(s.recv(1024).decode())
+    s.send("Acknowledgement Recieved".encode())
+```
 ## OUPUT
+![Screenshot (95)](https://github.com/user-attachments/assets/2e10e464-25dd-4446-a7fd-cbb73c0d7f8b)
+
 ## RESULT
 Thus, python program to perform stop and wait protocol was successfully executed
